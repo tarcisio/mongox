@@ -37,6 +37,8 @@ Desta forma podemos acessar a interface web do Prometheus.
    minikube service grafana-np
    ```
 
+![configurar datasource](images/grafana.png)
+
 # Configurar Prometheus Datasource no Grafana
 Após logar na interface do grafana, adicione o prometheus como datasource:
 Configuration > Datasources e adicione uma instancia Prometheus.
@@ -51,12 +53,14 @@ Neste momento vamos utilizar o  https://grafana.com/grafana/dashboards/6417
 
 (+) > Import via grafana.com e digite o ID 6417 no campo e click em load.
 
-![configurar datasource](https://raw.githubusercontent.com/tarcisio/mongox/images/configurar-datasource.png)
+![configurar datasource](images/configurar-datasource.png)
 
 In the dashboard configuration we need to select the Prometheus Datasource we created in the earlier step.
 
-![Alt text](relative/path/to/img.jpg?raw=true "Title")
+![configurar datasource](images/configurar-datasource.png)
 
 Once we confirm the Import dialog, we’ll be redirected to the new Dashboard.
+
+![configurar datasource](images/configurar-datasource.png)
 
 If everything went well, you’ll be able to see your cluster’s information in the Dashboard.
