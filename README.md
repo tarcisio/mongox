@@ -41,11 +41,11 @@ Você pode alterar os arquivos de acordo com o que desejar.
 Para adicionar o
 [Prometheus](https://prometheus.io/)
 utilizamos o
-[helm chart](https://helm.sh/) provido pela comunidade.
+[helm chart](https://helm.sh/) provido pela comunidade execute os comandos:
    ```
    helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
    helm install prometheus prometheus-community/prometheus
-   kubectl expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-np
+   minikube kubectl -- expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-np
    ```
 
 Os dois primeiros comandos instala o chart do
@@ -62,17 +62,24 @@ Desta forma podemos acessar a interface web do Prometheus utilizando a a porta c
 Para adicionar o
 [Grafana](https://grafana.com/)
 utilizamos o
-[helm chart](https://helm.sh/) provido pela comunidade.
+[helm chart](https://helm.sh/) provido pela comunidade execute os comandos:
 
    ```
    helm repo add grafana https://grafana.github.io/helm-charts
    helm install grafana grafana/grafana
-   kubectl expose service grafana --type=NodePort --target-port=3000 --name=grafana-np
+   minikube kubectl -- expose service grafana --type=NodePort --target-port=3000 --name=grafana-np
    ```
 
-Da mesma forma que o Prometheus, instalamos o chart com os dois primeiros comandos e com o terceiro expomos
+Da mesma forma que fizemos para o Prometheus, instalamos o chart com os dois primeiros comandos e com o terceiro expomos
 a interface web com um
 [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/).
+
+Observe que o Grafana é protegido por senha. Para obter a senha do usuário `admin` utilize o seguinte comando:
+   ```
+   minikube kubectl -- get secret --namespace default grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+   ```
+
+Para obter o endereço do Grafana use o comando:
 
    ```
    minikube service grafana-np
@@ -92,7 +99,7 @@ A URL para o prometheus contem o nome do serviço é `http://prometheus-server:8
 Agora, configurar um dashboard para o kubernetes providos pela comunidade.
 Neste momento vamos utilizar o  https://grafana.com/grafana/dashboards/6417
 
-(+) > Import via grafana.com e digite o ID 6417 no campo e click em load.
+(+) > Import via grafana.com e digite o ID `6417` no campo e click em load.
 
 ![kubernetes dashboard import](images/grafana-kubernetes-dashboard-import0.png)
 
