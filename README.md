@@ -6,10 +6,18 @@ Como instalar o
 [Prometheus](https://prometheus.io/) no
 [Minikube](https://minikube.sigs.k8s.io/docs/start/).
 
-## Minikube
+Requisitos:
+1. [Minikube](https://minikube.sigs.k8s.io/)
+2. [Helm](https://helm.sh/)
+3. Os arquivos deste repositório
+
+## Instalar Minikube
 [instale o minikube seguindo a documentação](https://minikube.sigs.k8s.io/docs/start/).
 
-## MongoDB Community
+## Instalar Helm Charts
+[instale o helm seguindo a documentação](https://helm.sh/docs/intro/install/).
+
+## Instalar MongoDB Community
 Após instalar e rodar o minikube:
 
    ```
@@ -23,9 +31,6 @@ Você pode alterar os arquivos de acordo com o que desejar.
    ```
    minikube kubectl -- create -f ./
    ```
-
-## Instalar Helm Charts
-[instale o helm seguindo a documentação](https://helm.sh/docs/intro/install/).
 
 ## Prometheus
 Para adicionar o Prometheus utilizamos o helm chart provido pela comunidade.
