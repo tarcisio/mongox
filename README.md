@@ -4,7 +4,8 @@ Como instalar o
 [MongoDB Community](https://github.com/mongodb/mongodb-kubernetes-operator) com a monitoração do
 [Grafana](https://grafana.com/) +
 [Prometheus](https://prometheus.io/) no
-[Minikube](https://minikube.sigs.k8s.io/docs/start/).
+[Minikube](https://minikube.sigs.k8s.io/docs/start/) usando também o
+[Helm](https://helm.sh/).
 
 Requisitos:
 1. [Minikube](https://minikube.sigs.k8s.io/)
@@ -14,17 +15,21 @@ Requisitos:
 ## Instalar Minikube
 [instale o minikube seguindo a documentação](https://minikube.sigs.k8s.io/docs/start/).
 
-## Instalar Helm Charts
-[instale o helm seguindo a documentação](https://helm.sh/docs/intro/install/).
-
-## Instalar MongoDB Community
-Após instalar e rodar o minikube:
+Inicie o minikube:
 
    ```
    minikube start
    ```
 
-crie os recursos utilizando o yamls aqui presentes para instalar o operador do MongoDB com um replicaSet de exemplo.
+## Instalar Helm Charts
+[instale o helm seguindo a documentação](https://helm.sh/docs/intro/install/).
+
+## Instalar MongoDB Community
+Após instalar e rodar o minikube, crie os recursos utilizando o YAMLs aqui presentes para instalar o 
+operador
+do
+[MongoDB Community](https://github.com/mongodb/mongodb-kubernetes-operator) com um
+[ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/) de exemplo.
 O usuário é `admin` e a senha `password`.
 Você pode alterar os arquivos de acordo com o que desejar.
 
@@ -33,15 +38,20 @@ Você pode alterar os arquivos de acordo com o que desejar.
    ```
 
 ## Prometheus
-Para adicionar o Prometheus utilizamos o helm chart provido pela comunidade.
+Para adicionar o
+[Prometheus](https://prometheus.io/)
+utilizamos o
+[helm chart](https://helm.sh/) provido pela comunidade.
    ```
    helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
    helm install prometheus prometheus-community/prometheus
    kubectl expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-np
    ```
 
-Os dois primeiros comandos instala o chart do Prometheus.
-O terceiro comando expoe o prometheus-server usando um NodePort.
+Os dois primeiros comandos instala o chart do
+[Prometheus](https://prometheus.io/).
+O terceiro comando expoe o prometheus-server usando um
+[NodePort](https://kubernetes.io/docs/concepts/services-networking/service/).
 Desta forma podemos acessar a interface web do Prometheus utilizando a a porta criada.
 
    ```
@@ -49,7 +59,10 @@ Desta forma podemos acessar a interface web do Prometheus utilizando a a porta c
    ```
 
 ## Grafana
-Para adicionar o Grafana utilizamos o helm chart provido pela comunidade.
+Para adicionar o
+[Grafana](https://grafana.com/)
+utilizamos o
+[helm chart](https://helm.sh/) provido pela comunidade.
 
    ```
    helm repo add grafana https://grafana.github.io/helm-charts
@@ -58,7 +71,8 @@ Para adicionar o Grafana utilizamos o helm chart provido pela comunidade.
    ```
 
 Da mesma forma que o Prometheus, instalamos o chart com os dois primeiros comandos e com o terceiro expomos
-a interface web com um NodePort.
+a interface web com um
+[NodePort](https://kubernetes.io/docs/concepts/services-networking/service/).
 
    ```
    minikube service grafana-np
