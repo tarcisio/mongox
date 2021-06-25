@@ -53,3 +53,18 @@ spec:
   selector:
     app: mongodb-exporter
 ---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mongodb-exporter-np
+spec:
+  ports:
+    - protocol: TCP
+      port: 9216
+      targetPort: 9216
+      nodePort: 32515
+  selector:
+    app: mongodb-exporter
+  type: NodePort
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster
