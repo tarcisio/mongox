@@ -6,7 +6,7 @@ metadata:
   annotations:
     prometheus.io/scrape: "true"
     prometheus.io/path: /metrics
-    prometheus.io/port: "9001"
+    prometheus.io/port: "9216"
 spec:
   replicas: 1
   selector:
@@ -19,13 +19,18 @@ spec:
     spec:
       containers:
         - name: mongodb-exporter
-          image: docker.io/targetprocess/mongodb_exporter
+          image: docker.io/bitnami/mongodb-exporter
           imagePullPolicy: Always
           args:
-            - '-mongodb.uri'
-            - 'mongodb://admin:password@mongodb-exemplo-0/admin'
+            - '--mongodb.uri'
+            - 'mongodb://admin:password@mongodb-exemplo-svc/admin'
+          env:
+            - name: MONGODB_URI
+              value: 'mongodb://admin:password@mongodb-exemplo-svc/admin'
+            - name: MONGODB_URL
+              value: 'mongodb://admin:password@mongodb-exemplo-svc/admin'
           ports:
-          - containerPort: 9001
+          - containerPort: 9216
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
@@ -48,24 +53,7 @@ spec:
   ports:
     - name: http
       protocol: TCP
-      port: 9001
-      targetPort: 9001
+      port: 9216
+      targetPort: 9216
   selector:
     app: mongodb-exporter
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: mongodb-exemplo-svc-np
-  namespace: default
-spec:
-  ports:
-    - protocol: TCP
-      port: 27017
-      targetPort: 27017
-      nodePort: 32194
-  selector:
-    app: mongodb-exemplo-svc
-  type: NodePort
-  sessionAffinity: None
-  externalTrafficPolicy: Cluster
