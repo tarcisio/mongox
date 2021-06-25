@@ -24,7 +24,7 @@ spec:
     - protocol: TCP
       port: 9216
       targetPort: 9216
-      nodePort: 9216
+      nodePort: 31916
   selector:
     app: mongodb-exporter
   type: NodePort
