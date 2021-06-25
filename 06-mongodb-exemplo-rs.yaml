@@ -16,6 +16,8 @@ spec:
       passwordSecretRef:
         name: admin-password
       roles:
+        - name: clusterMonitor
+          db: admin
         - name: clusterAdmin
           db: admin
         - name: userAdminAnyDatabase
