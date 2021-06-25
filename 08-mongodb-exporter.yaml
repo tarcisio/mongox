@@ -24,11 +24,6 @@ spec:
           args:
             - '--mongodb.uri'
             - 'mongodb://admin:password@mongodb-exemplo-svc/admin'
-          env:
-            - name: MONGODB_URI
-              value: 'mongodb://admin:password@mongodb-exemplo-svc/admin'
-            - name: MONGODB_URL
-              value: 'mongodb://admin:password@mongodb-exemplo-svc/admin'
           ports:
           - containerPort: 9216
       restartPolicy: Always
@@ -57,3 +52,4 @@ spec:
       targetPort: 9216
   selector:
     app: mongodb-exporter
+---
