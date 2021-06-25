@@ -97,9 +97,9 @@ A URL para o prometheus contem o nome do serviço é `http://prometheus-server:8
 
 ## Kubernetes Dashboard
 Agora, configurar um dashboard para o kubernetes providos pela comunidade.
-Neste momento vamos utilizar o  https://grafana.com/grafana/dashboards/6417
+Neste momento vamos utilizar o  https://grafana.com/grafana/dashboards/7249
 
-(+) > Import via grafana.com e digite o ID `6417` no campo e click em load.
+(+) > Import via grafana.com e digite o ID `7249` no campo e click em load.
 
 ![kubernetes dashboard import](images/grafana-kubernetes-dashboard-import0.png)
 
