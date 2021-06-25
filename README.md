@@ -113,3 +113,8 @@ Após confirmar a importação, seremos direcionados para o dashboard.
 
 Se tudo estiver ok, veremos informações do nosso cluster do minikube.
 
+## MongoDB Dashboards
+
+```
+minikube kubectl -- expose service mongodb-exporter --type=NodePort --target-port=9001 --name=mongodb-exporter-np
+```
