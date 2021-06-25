@@ -23,7 +23,7 @@ spec:
           imagePullPolicy: Always
           args:
             - '-mongodb.uri'
-            - 'mongodb+srv://admin:password@mongodb-exemplo-svc/admin'
+            - 'mongodb://admin:password@mongodb-exemplo-0/admin'
           ports:
           - containerPort: 9001
       restartPolicy: Always
