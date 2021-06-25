@@ -3,10 +3,6 @@ apiVersion: apps/v1
 metadata:
   name: mongodb-exporter
   namespace: default
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/path: /metrics
-    prometheus.io/port: "9216"
 spec:
   replicas: 1
   selector:
@@ -14,18 +10,26 @@ spec:
       app: mongodb-exporter
   template:
     metadata:
+      creationTimestamp: null
       labels:
         app: mongodb-exporter
     spec:
       containers:
         - name: mongodb-exporter
           image: docker.io/bitnami/mongodb-exporter
-          imagePullPolicy: Always
           args:
             - '--mongodb.uri'
-            - 'mongodb://admin:password@mongodb-exemplo-svc/admin'
+            - >-
+              mongodb+srv://admin:password@mongodb-exemplo-svc.default.svc.cluster.local/admin?ssl=false
+            - '--mongodb.direct-connect=false'
+            - '--compatible-mode'
           ports:
-          - containerPort: 9216
+            - name: service
+              containerPort: 9216
+              protocol: TCP
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst

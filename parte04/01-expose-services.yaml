@@ -1,32 +1,19 @@
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
-  name: mongodb-exemplo-svc-np
-  namespace: default
+  name: mongodb-exporter
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/path: /metrics
+    prometheus.io/port: "9216"
 spec:
   ports:
-    - protocol: TCP
-      port: 27017
-      targetPort: 27017
-      nodePort: 32194
-  selector:
-    app: mongodb-exemplo-svc
-  type: NodePort
-  sessionAffinity: None
-  externalTrafficPolicy: Cluster
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: mongodb-exporter-np
-spec:
-  ports:
-    - protocol: TCP
-      port: 9216
+    - name: exporter
+      protocol: TCP
+      port: 9212
       targetPort: 9216
-      nodePort: 31916
   selector:
     app: mongodb-exporter
   type: NodePort
   sessionAffinity: None
-  externalTrafficPolicy: Cluster
+  type: ClusterIP

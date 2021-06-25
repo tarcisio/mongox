@@ -4,7 +4,7 @@ kind: MongoDBCommunity
 metadata:
   name: mongodb-exemplo
 spec:
-  members: 1
+  members: 3
   type: ReplicaSet
   version: "4.2.6"
   security:
@@ -33,3 +33,19 @@ metadata:
 type: Opaque
 stringData:
   password: password
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mongodb-exemplo-svc-np
+  namespace: default
+spec:
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+  selector:
+    app: mongodb-exemplo-svc
+  type: NodePort
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster

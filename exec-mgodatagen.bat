@@ -1,0 +1,1 @@
+mgodatagen.exe -f mgodatagen.json --uri=mongodb://admin:password@127.0.0.1:62660/admin
