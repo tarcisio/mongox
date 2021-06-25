@@ -21,7 +21,7 @@ spec:
         - name: mongodb-exporter
           image: docker.io/targetprocess/mongodb_exporter
           imagePullPolicy: Always
-          args: ['-mongodb.uri', 'mongodb://admin:password@mongodb-exemplo-svc:27017/admin']
+          args: ['-mongodb.uri', 'mongodb://admin:password@mongodb-exemplo-0.mongodb-exemplo-svc.default.svc.cluster.local:27017/admin?ssl=false']
           ports:
           - containerPort: 9001
       restartPolicy: Always
