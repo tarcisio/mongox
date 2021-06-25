@@ -19,10 +19,9 @@ spec:
           imagePullPolicy: Always
           args: ['-mongodb.uri', 'mongodb://admin:password@example-mongodb-svc']
           ports:
-            - name: service
+            - name: mongodb-exporter
               protocol: TCP
-              port: 9001
-
+              containerPort: 9001
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
